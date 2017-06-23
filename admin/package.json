@@ -1,0 +1,19 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --recursive"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.63.0"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "child_process": "^1.0.2",
+    "mocha": "^3.4.2"
+  }
+}
