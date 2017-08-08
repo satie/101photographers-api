@@ -1,14 +1,21 @@
-service: contact
+service: contact-101photographers
 
 provider:
   name: aws
   runtime: nodejs6.10
+  stage: dev
 
 functions:
   hello:
     handler: handler.sendContactEmail
+    events:
+      - http:
+          path: contact-us
+          method: POST
 
 resources:
   Resources:
-    S3BucketMybucket101photographersEmail:
-      Type: S3::Bucket
+    contactUsEmail:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-${self:provider.stage}-contactus
