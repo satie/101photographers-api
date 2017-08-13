@@ -4,6 +4,13 @@ provider:
   name: aws
   runtime: nodejs6.10
   stage: dev
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "ses:SendEmail"
+       Resource:
+         - "arn:aws:ses:us-east-1:617796983124:identity/101photographers.in"
+         - "arn:aws:ses:us-east-1:617796983124:identity/satiesharma@gmail.com"
 
 functions:
   hello:
