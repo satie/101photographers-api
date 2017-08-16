@@ -6,6 +6,7 @@ const validator = require('validator');
 
 module.exports.sendContactEmail = (event, context, callback) => {
   if (event.httpMethod === "POST" && event.body) {
+    // console.log(event.body);
     let contact = JSON.parse(event.body);
     if (validator.isEmail(contact.email) && !validator.isEmpty(contact.name)) {
       let overrides = {
@@ -22,7 +23,7 @@ module.exports.sendContactEmail = (event, context, callback) => {
       let email = {
         Source: "101photographers Contact Form <contact@101photographers.in>",
         Destination: {
-          ToAddresses: [ "satiesharma@gmail.com" ]
+          ToAddresses: [ "satiesharma@gmail.com", "devasar@gmail.com" ]
         },
         Message: {
           Subject: {
@@ -39,11 +40,16 @@ module.exports.sendContactEmail = (event, context, callback) => {
       const ses = new aws.SES();
       let sesPromise = ses.sendEmail(email).promise();
       sesPromise.then((data) => {
-        console.log(data);
+        // console.log(data);
         return callback(null, {
           statusCode: 200,
+          headers: {
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
-            messageId: data
+            data
           })
         });
       }).catch((error) => {

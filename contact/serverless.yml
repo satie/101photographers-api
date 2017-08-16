@@ -11,6 +11,7 @@ provider:
        Resource:
          - "arn:aws:ses:us-east-1:617796983124:identity/101photographers.in"
          - "arn:aws:ses:us-east-1:617796983124:identity/satiesharma@gmail.com"
+         - "arn:aws:ses:us-east-1:617796983124:identity/devasar@gmail.com"
 
 functions:
   hello:
@@ -19,6 +20,7 @@ functions:
       - http:
           path: contact-us
           method: POST
+          cors: true          
 
 resources:
   Resources:
