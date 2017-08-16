@@ -9,16 +9,16 @@ module.exports.sendContactEmail = (event, context, callback) => {
     // console.log(event.body);
     let contact = JSON.parse(event.body);
     if (validator.isEmail(contact.email) && !validator.isEmpty(contact.name)) {
-      let overrides = {
-        config: {
-          fromEmail: "contact@101photographers.in",
-          forwardMapping: {
-            "@101photographers.in": [
-              "satiesharma@gmail.com"
-            ]
-          }
-        }
-      };
+      // let overrides = {
+      //   config: {
+      //     fromEmail: "contact@101photographers.in",
+      //     forwardMapping: {
+      //       "@101photographers.in": [
+      //         "satiesharma@gmail.com"
+      //       ]
+      //     }
+      //   }
+      // };
       let msg = contact.message ? "New contact from " + contact.email + " through 101photographers - " + contact.message : "New contact from " + contact.email + " through 101photographers";
       let email = {
         Source: "101photographers Contact Form <contact@101photographers.in>",
